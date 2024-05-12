@@ -1,0 +1,178 @@
+<mxfile host="app.diagrams.net" modified="2024-05-12T21:40:03.567Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="SY0fSRgcfONNP5wrZ7dt" version="24.4.0" type="github" pages="4">
+  <diagram name="sign up" id="GaBRmfJMPpYKJdzFo9W1">
+    <mxGraphModel dx="882" dy="570" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#480ca8" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="1WFHPmO2jmdIlzHHWPof-2" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 100px;&quot; color=&quot;#f5f5f5&quot;&gt;pixel&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="385" y="99" width="302" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="UwKtQnCdftTm8I_bhyUP-1" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=none;fillColor=#EDEDED;" parent="1" vertex="1">
+          <mxGeometry x="308" y="393" width="481" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="UwKtQnCdftTm8I_bhyUP-2" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 50px;&quot; color=&quot;#f5f5f5&quot;&gt;sign up today&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="397.5" y="278" width="302" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="UwKtQnCdftTm8I_bhyUP-3" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 34px;&quot;&gt;username&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#480ca8;" parent="1" vertex="1">
+          <mxGeometry x="314" y="398" width="169" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="UwKtQnCdftTm8I_bhyUP-4" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=none;fillColor=#EDEDED;" parent="1" vertex="1">
+          <mxGeometry x="308" y="483" width="481" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="UwKtQnCdftTm8I_bhyUP-5" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 34px;&quot;&gt;email&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#480ca8;" parent="1" vertex="1">
+          <mxGeometry x="314" y="488" width="98" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="UwKtQnCdftTm8I_bhyUP-6" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=none;fillColor=#EDEDED;" parent="1" vertex="1">
+          <mxGeometry x="308" y="576" width="481" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="UwKtQnCdftTm8I_bhyUP-7" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 34px;&quot;&gt;password&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#480ca8;" parent="1" vertex="1">
+          <mxGeometry x="314" y="581" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="UwKtQnCdftTm8I_bhyUP-8" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3D0A8F;strokeColor=none;shadow=1;" parent="1" vertex="1">
+          <mxGeometry x="466.5" y="676" width="164" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="UwKtQnCdftTm8I_bhyUP-9" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 32px;&quot; color=&quot;#f5f5f5&quot;&gt;sign up&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="485" y="681" width="122" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="UwKtQnCdftTm8I_bhyUP-10" value="&lt;font style=&quot;font-size: 39px;&quot; face=&quot;Tahoma&quot; color=&quot;#f5f5f5&quot;&gt;&lt;u&gt;login&lt;/u&gt;&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="456" y="206" width="160" height="59" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="login" id="LB0S8YXnoj-pzjeAmmSz">
+    <mxGraphModel dx="1764" dy="1140" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#480ca8" math="0" shadow="0">
+      <root>
+        <mxCell id="jVqcO5rZW86XvWjluBa3-0" />
+        <mxCell id="jVqcO5rZW86XvWjluBa3-1" parent="jVqcO5rZW86XvWjluBa3-0" />
+        <mxCell id="jVqcO5rZW86XvWjluBa3-2" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 100px;&quot; color=&quot;#f5f5f5&quot;&gt;pixel&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="jVqcO5rZW86XvWjluBa3-1">
+          <mxGeometry x="381" y="164" width="302" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="jVqcO5rZW86XvWjluBa3-6" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=none;fillColor=#EDEDED;" vertex="1" parent="jVqcO5rZW86XvWjluBa3-1">
+          <mxGeometry x="299" y="323" width="481" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jVqcO5rZW86XvWjluBa3-7" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 34px;&quot;&gt;email&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#480ca8;" vertex="1" parent="jVqcO5rZW86XvWjluBa3-1">
+          <mxGeometry x="305" y="328" width="98" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="jVqcO5rZW86XvWjluBa3-8" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=none;fillColor=#EDEDED;" vertex="1" parent="jVqcO5rZW86XvWjluBa3-1">
+          <mxGeometry x="299" y="416" width="481" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jVqcO5rZW86XvWjluBa3-9" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 34px;&quot;&gt;password&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#480ca8;" vertex="1" parent="jVqcO5rZW86XvWjluBa3-1">
+          <mxGeometry x="305" y="421" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="jVqcO5rZW86XvWjluBa3-10" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3D0A8F;strokeColor=none;shadow=1;" vertex="1" parent="jVqcO5rZW86XvWjluBa3-1">
+          <mxGeometry x="457.5" y="516" width="164" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jVqcO5rZW86XvWjluBa3-12" value="&lt;font style=&quot;font-size: 39px;&quot; face=&quot;Tahoma&quot; color=&quot;#f5f5f5&quot;&gt;login&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="jVqcO5rZW86XvWjluBa3-1">
+          <mxGeometry x="457.5" y="514" width="160" height="59" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="home" id="jEsStsAedlauc16GHF5n">
+    <mxGraphModel dx="1764" dy="1140" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#480ca8" math="0" shadow="0">
+      <root>
+        <mxCell id="e_FSspzjktdpveYKUGLM-0" />
+        <mxCell id="e_FSspzjktdpveYKUGLM-1" parent="e_FSspzjktdpveYKUGLM-0" />
+        <mxCell id="CFU41aJYJznWm8YnJtLe-1" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=none;fillColor=#5a12ce;" vertex="1" parent="e_FSspzjktdpveYKUGLM-1">
+          <mxGeometry x="928.5" y="28" width="121" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="e_FSspzjktdpveYKUGLM-3" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 51px;&quot; color=&quot;#f5f5f5&quot;&gt;pixel&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="e_FSspzjktdpveYKUGLM-1">
+          <mxGeometry x="50" y="35" width="177" height="51" as="geometry" />
+        </mxCell>
+        <mxCell id="e_FSspzjktdpveYKUGLM-4" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 51px;&quot; color=&quot;#f5f5f5&quot;&gt;welcome, xxxxx!&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="e_FSspzjktdpveYKUGLM-1">
+          <mxGeometry x="520" y="29" width="391" height="51" as="geometry" />
+        </mxCell>
+        <mxCell id="e_FSspzjktdpveYKUGLM-5" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 32px;&quot; color=&quot;#f5f5f5&quot;&gt;logout&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="e_FSspzjktdpveYKUGLM-1">
+          <mxGeometry x="937" y="33" width="104" height="51" as="geometry" />
+        </mxCell>
+        <mxCell id="CFU41aJYJznWm8YnJtLe-0" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=none;fillColor=#5a12ce;" vertex="1" parent="e_FSspzjktdpveYKUGLM-1">
+          <mxGeometry x="62" y="234" width="381" height="483" as="geometry" />
+        </mxCell>
+        <mxCell id="CFU41aJYJznWm8YnJtLe-2" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 37px;&quot; color=&quot;#f5f5f5&quot;&gt;channels&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="e_FSspzjktdpveYKUGLM-1">
+          <mxGeometry x="81" y="175" width="177" height="51" as="geometry" />
+        </mxCell>
+        <mxCell id="CFU41aJYJznWm8YnJtLe-3" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 46px;&quot; color=&quot;#f5f5f5&quot;&gt;playstation&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="e_FSspzjktdpveYKUGLM-1">
+          <mxGeometry x="127" y="263" width="234" height="69" as="geometry" />
+        </mxCell>
+        <mxCell id="CFU41aJYJznWm8YnJtLe-5" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 46px;&quot; color=&quot;#f5f5f5&quot;&gt;xbox&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="e_FSspzjktdpveYKUGLM-1">
+          <mxGeometry x="127" y="369" width="234" height="69" as="geometry" />
+        </mxCell>
+        <mxCell id="CFU41aJYJznWm8YnJtLe-6" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 46px;&quot; color=&quot;#f5f5f5&quot;&gt;pc&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="e_FSspzjktdpveYKUGLM-1">
+          <mxGeometry x="127" y="481" width="234" height="69" as="geometry" />
+        </mxCell>
+        <mxCell id="CFU41aJYJznWm8YnJtLe-7" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 46px;&quot; color=&quot;#f5f5f5&quot;&gt;nintendo&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="e_FSspzjktdpveYKUGLM-1">
+          <mxGeometry x="127" y="602" width="234" height="69" as="geometry" />
+        </mxCell>
+        <mxCell id="CFU41aJYJznWm8YnJtLe-8" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 37px;&quot; color=&quot;#f5f5f5&quot;&gt;select a channel to begin asking questions, sharing experiences, or joining discussions!&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="e_FSspzjktdpveYKUGLM-1">
+          <mxGeometry x="510" y="346" width="545" height="219" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="channel selected" id="joiLhO6jrfOt10Bgsl0w">
+    <mxGraphModel dx="1764" dy="1140" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="#480ca8" math="0" shadow="0">
+      <root>
+        <mxCell id="x1HaLqxGooj19-iMm_5d-0" />
+        <mxCell id="x1HaLqxGooj19-iMm_5d-1" parent="x1HaLqxGooj19-iMm_5d-0" />
+        <mxCell id="x1HaLqxGooj19-iMm_5d-2" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=none;fillColor=#5a12ce;" vertex="1" parent="x1HaLqxGooj19-iMm_5d-1">
+          <mxGeometry x="928.5" y="28" width="121" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="x1HaLqxGooj19-iMm_5d-3" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 51px;&quot; color=&quot;#f5f5f5&quot;&gt;pixel&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="x1HaLqxGooj19-iMm_5d-1">
+          <mxGeometry x="50" y="35" width="177" height="51" as="geometry" />
+        </mxCell>
+        <mxCell id="x1HaLqxGooj19-iMm_5d-4" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 51px;&quot; color=&quot;#f5f5f5&quot;&gt;welcome, xxxxx!&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="x1HaLqxGooj19-iMm_5d-1">
+          <mxGeometry x="520" y="29" width="391" height="51" as="geometry" />
+        </mxCell>
+        <mxCell id="x1HaLqxGooj19-iMm_5d-5" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 32px;&quot; color=&quot;#f5f5f5&quot;&gt;logout&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="x1HaLqxGooj19-iMm_5d-1">
+          <mxGeometry x="937" y="33" width="104" height="51" as="geometry" />
+        </mxCell>
+        <mxCell id="x1HaLqxGooj19-iMm_5d-6" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=none;fillColor=#5a12ce;" vertex="1" parent="x1HaLqxGooj19-iMm_5d-1">
+          <mxGeometry x="38" y="234" width="381" height="483" as="geometry" />
+        </mxCell>
+        <mxCell id="x1HaLqxGooj19-iMm_5d-7" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 37px;&quot; color=&quot;#f5f5f5&quot;&gt;channels&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="x1HaLqxGooj19-iMm_5d-1">
+          <mxGeometry x="57" y="175" width="177" height="51" as="geometry" />
+        </mxCell>
+        <mxCell id="x1HaLqxGooj19-iMm_5d-8" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 46px;&quot; color=&quot;#f5f5f5&quot;&gt;playstation&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="x1HaLqxGooj19-iMm_5d-1">
+          <mxGeometry x="103" y="263" width="234" height="69" as="geometry" />
+        </mxCell>
+        <mxCell id="x1HaLqxGooj19-iMm_5d-9" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 46px;&quot; color=&quot;#f5f5f5&quot;&gt;xbox&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="x1HaLqxGooj19-iMm_5d-1">
+          <mxGeometry x="103" y="369" width="234" height="69" as="geometry" />
+        </mxCell>
+        <mxCell id="x1HaLqxGooj19-iMm_5d-10" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 46px;&quot; color=&quot;#f5f5f5&quot;&gt;pc&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="x1HaLqxGooj19-iMm_5d-1">
+          <mxGeometry x="103" y="481" width="234" height="69" as="geometry" />
+        </mxCell>
+        <mxCell id="x1HaLqxGooj19-iMm_5d-11" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 46px;&quot; color=&quot;#f5f5f5&quot;&gt;nintendo&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="x1HaLqxGooj19-iMm_5d-1">
+          <mxGeometry x="103" y="602" width="234" height="69" as="geometry" />
+        </mxCell>
+        <mxCell id="x1HaLqxGooj19-iMm_5d-12" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 32px;&quot; color=&quot;#f5f5f5&quot;&gt;xxxxx: what is the best latest game?&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="x1HaLqxGooj19-iMm_5d-1">
+          <mxGeometry x="451.5" y="371" width="541" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="3Mvm1uVmvk_bFGwTN-Yd-2" value="" style="endArrow=none;dashed=1;html=1;rounded=0;entryX=0.202;entryY=0.046;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=4;strokeColor=#fcf8f8;" edge="1" parent="x1HaLqxGooj19-iMm_5d-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="359" y="334" as="sourcePoint" />
+            <mxPoint x="76.00000000000011" y="334.1640000000001" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lS1Dp_WkoHqPVhR-WKnQ-0" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 32px;&quot; color=&quot;#f5f5f5&quot;&gt;yyyyy: check out the new HHHHHHH&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="x1HaLqxGooj19-iMm_5d-1">
+          <mxGeometry x="454.5" y="434" width="541" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lS1Dp_WkoHqPVhR-WKnQ-1" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 32px;&quot; color=&quot;#f5f5f5&quot;&gt;jjjjj: has playstation released an update for bbbbb?&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="x1HaLqxGooj19-iMm_5d-1">
+          <mxGeometry x="459.5" y="513" width="566" height="57" as="geometry" />
+        </mxCell>
+        <mxCell id="lS1Dp_WkoHqPVhR-WKnQ-2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEEBF2;strokeColor=none;" vertex="1" parent="x1HaLqxGooj19-iMm_5d-1">
+          <mxGeometry x="455.75" y="628" width="471.5" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="lS1Dp_WkoHqPVhR-WKnQ-3" value="" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=none;fillColor=#5a12ce;" vertex="1" parent="x1HaLqxGooj19-iMm_5d-1">
+          <mxGeometry x="935" y="623" width="121" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="lS1Dp_WkoHqPVhR-WKnQ-4" value="&lt;font face=&quot;Tahoma&quot; style=&quot;font-size: 32px;&quot; color=&quot;#f5f5f5&quot;&gt;add&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="x1HaLqxGooj19-iMm_5d-1">
+          <mxGeometry x="943.5" y="628" width="104" height="51" as="geometry" />
+        </mxCell>
+        <mxCell id="lS1Dp_WkoHqPVhR-WKnQ-5" value="&lt;font face=&quot;Tahoma&quot;&gt;&lt;span style=&quot;font-size: 32px;&quot;&gt;join the discussion&lt;/span&gt;&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#4E0DB5;" vertex="1" parent="x1HaLqxGooj19-iMm_5d-1">
+          <mxGeometry x="459.5" y="632.5" width="387.5" height="51" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
