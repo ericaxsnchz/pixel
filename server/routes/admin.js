@@ -2,9 +2,31 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
 const User = require('../models/User');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const adminLayout = '../views/layouts/admin';
 const jwtSecret = process.env.JWT_SECRET;
+
+// check login
+// const authMiddleware = (req, res, next) => {
+//     const token = req.cookies.token;
+    
+//     if(!token) {
+//         return res.status(401).json({ message: 'unauthorized' });
+//     } 
+
+//     try {
+//         const decoded = jwt.verify(token, jwtSecret);
+//         req.userId = decoded.userId;
+//         next();
+//     } catch (error) {
+//         res.status(401).json({ message: 'unauthorized' });
+//     }
+// }
+
+
+
 
 // admin - login page
 router.get('/admin', async (req, res) => {
@@ -48,9 +70,23 @@ router.post('/admin', async (req, res) => {
 
 // dashboard 
 router.get('/dashboard', async (req, res) => {
+    try {
+        const locals = {
+            title: "pixel",
+            description: "add to the discusssion"
+        }
+        const data = await Post.find();
+        res.render('admin/dashboard', {
+            locals,
+            data,
+            layout: adminLayout
+        });
+    } catch (error) {
+        console.log(error)
+    }
 
-    res.render('admin/dashboard');
 });
+
 
 // register
 

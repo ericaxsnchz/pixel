@@ -1,1 +1,20 @@
-Dashboard
+<div class="admin">
+    <h2>Posts</h2>
+    <a href="/add-post">+ add new</a>
+</div>
+
+<ul>
+    <% data.forEach(post => { %>
+        <li>
+            <a href="/post/<%= post._id %>">
+             <%= post.title %> &nearr;
+            </a>
+            <div>
+                <a href="/edit-post/<%= post._id %>">edit</a>
+                <form action="/delete-post/<%= data._id %>?_method=DELETE" method="POST">
+                    <input type="submit" value="Delete">
+                </form>
+            </div>
+        </li>
+    <% }) %>
+</ul>
