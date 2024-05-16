@@ -87,6 +87,40 @@ router.get('/dashboard', async (req, res) => {
 
 });
 
+// create new post 
+router.get('/add-post', async (req, res) => {
+    try {
+        const locals = {
+            title: "add post",
+            description: "add to the discusssion"
+        }
+        const data = await Post.find();
+        res.render('admin/add-post', {
+            locals,
+            layout: adminLayout
+        });
+    } catch (error) {
+        console.log(error)
+    }
+});
+
+//
+router.post('/add-post', async (req, res) => {
+    try {
+        try {
+            const newPost = new Post({
+                title: req.body.title,
+                body: req.body.body
+            });
+            await Post.create(newPost);
+            res.redirect('/dashboard');
+        } catch (error) {
+         console.log(error)   
+        }
+    } catch (error) {
+        console.log(error)
+    }
+});
 
 // register
 
