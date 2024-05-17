@@ -28,45 +28,45 @@ const jwtSecret = process.env.JWT_SECRET;
 
 
 
-// admin - login page
-router.get('/admin', async (req, res) => {
-    try {
-        const locals = {
-            title: "admin",
-            description: "add to the discusssion"
-        }
+// // admin - login page
+// router.get('/admin', async (req, res) => {
+//     try {
+//         const locals = {
+//             title: "admin",
+//             description: "add to the discusssion"
+//         }
 
-        res.render('admin/login', { locals, layout: adminLayout });
-    } catch (error) {
-        console.log(error);
-    }
-});
+//         res.render('admin/login', { locals, layout: adminLayout });
+//     } catch (error) {
+//         console.log(error);
+//     }
+// });
 
-// admin - check login
+// // admin - check login
 
-router.post('/admin', async (req, res) => {
-    try {
-        const { username, password } = req.body;
-        const user = await User.findOne( {username} );
+// router.post('/admin', async (req, res) => {
+//     try {
+//         const { username, password } = req.body;
+//         const user = await User.findOne( {username} );
 
-        if(!user) {
-            return res.status(401).json( {message: 'Invalid credentials' });
-        }
+//         if(!user) {
+//             return res.status(401).json( {message: 'Invalid credentials' });
+//         }
 
-        const isPasswordValid = await bcrypt.compare(password, user.password);
-        if(!isPasswordValid) {
-            return res.status(401).json( {message: 'Invalid credentials' });
-        }
+//         const isPasswordValid = await bcrypt.compare(password, user.password);
+//         if(!isPasswordValid) {
+//             return res.status(401).json( {message: 'Invalid credentials' });
+//         }
         
-        const token = jwt.sign( {userId: user._id}, jwtSecret )
-        res.cookie('token', token, { httpOnly: true })
+//         const token = jwt.sign( {userId: user._id}, jwtSecret )
+//         res.cookie('token', token, { httpOnly: true })
 
-        res.redirect('/dashboard');
+//         res.redirect('/dashboard');
 
-    } catch (error) {
-        console.log(error);
-    }
-});
+//     } catch (error) {
+//         console.log(error);
+//     }
+// });
 
 // dashboard 
 router.get('/dashboard', async (req, res) => {

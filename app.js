@@ -40,6 +40,20 @@ app.set('view engine', 'ejs');
 app.use('/', require('./server/routes/main'));
 app.use('/', require('./server/routes/admin'));
 
+// login - register - home (new)
+app.get('/', async (req, res) => {
+    res.render('index.ejs')
+});
+
+app.get('/login', async (req, res) => {
+    res.render('login.ejs');
+});
+
+app.get('/register', async (req, res) => {
+    res.render('register.ejs')
+});
+
+
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
 });
