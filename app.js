@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const expressLayout = require('express-ejs-layouts')
+const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
 const MongoStore = require('connect-mongo');
 const expressSession = require('express-session');
@@ -20,6 +21,7 @@ connectDB();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
+app.use(methodOverride('_method'));
 app.use(expressSession({
     secret: 'keyboard cat',
     resave: false,
