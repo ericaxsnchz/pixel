@@ -1,8 +1,8 @@
 <ul>
     <% data.forEach(post => { %>
         <li>
-            <p>Channel: <%= post.channel.name %></p>
-            <p>Title: <%= post.title %></p>
+            <p>Channel: <a href="/admin/channels/<%= post.channel.name %>"><%= post.channel.name %></a></p>
+            <p>Title: <a href="/admin/channels/<%= post.channel.name %>"><%= post.title %></a></p>
         </li>
     <% }) %>
 </ul>

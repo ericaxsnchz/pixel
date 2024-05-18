@@ -83,13 +83,9 @@ router.get('/logout', (req, res) => {
 // dashboard 
 router.get('/dashboard', async (req, res) => {
     try {
-        const locals = {
-            title: "pixel",
-            description: "add to the discusssion"
-        }
-        const data = await Post.find();
+        const data = await Post.find().populate('channel');
+        const currentUser = req.user;
         res.render('admin/dashboard', {
-            locals,
             data,
             layout: adminLayout
         });
@@ -102,12 +98,13 @@ router.get('/dashboard', async (req, res) => {
 // channels
 router.get('/channels/:name', authMiddleware, async (req, res) => {
     try {
-        const channel = await Channel.findOne({
-            name: req.params.name
-        });
+        const channelName = req.params.name;
+        console.log('channel name:', channelName);
+        const channel = await Channel.findOne({ name: channelName });
         if (!channel) {
             return res.status(404).json({ message: 'channel not found' });
         }
+        console.log('channel found: ', channel);
         const locals = {
             title: channel.name,
             description: channel.description
@@ -121,6 +118,7 @@ router.get('/channels/:name', authMiddleware, async (req, res) => {
         })
     } catch (error) {
         console.log(error);
+        res.status(500).json({ message: 'internal server error'});
     }
 })
 
@@ -145,18 +143,18 @@ router.get('/add-post', authMiddleware, async (req, res) => {
 
 router.post('/add-post', authMiddleware, async (req, res) => {
     try {
-        const { title, body, channel } = req.body;
-        console.log('Channel ID:', channel);
-        const channelDoc = await Channel.findOne({ _id: channel });
-        console.log('Retrieved Channel:', channelDoc);
+        const channelName = req.params.name;
+        console.log('channel name:', channelName);
+        const channel = await Channel.findOne({ name: channelName });
+        console.log('Retrieved Channel:', channel);
 
-        if (!channelDoc) {
+        if (!channel) {
             return res.status(404).json({ message: 'channel not found' });
         }
 
-        const newPost = new Post({ title, body, channel: channelDoc._id });
+        const newPost = new Post({ title, body, channel: channel.name });
         await newPost.save();
-        res.redirect(`/admin/channels/${channelDoc.name}`);
+        res.redirect(`/admin/channels/${channel.name}`);
     } catch (error) {
         console.log(error);
         res.status(500).send('Server error');

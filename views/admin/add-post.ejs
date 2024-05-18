@@ -11,7 +11,7 @@
         <label for="channel">Channel:</label>
         <select name="channel" id="channel" required>
             <% channels.forEach(channel => { %>
-                <option value="<%= channel._id %>"><%= channel.name %></option>
+                <option value="<%= channel.name %>"><%= channel.name %></option>
             <% }) %>
         </select>
     </div>
