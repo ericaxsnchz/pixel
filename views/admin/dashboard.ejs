@@ -1,18 +1,8 @@
 <ul>
     <% data.forEach(post => { %>
         <li>
-            <a href="/post/<%= post._id %>">
-             <%= post.title %> &nearr;
-            </a>
-            <div>
-                <a href="/edit-post/<%= post._id %>">edit</a>
-                <form action="/delete-post/<%= post._id %>?_method=DELETE" method="POST">
-                    <input type="submit" value="Delete">
-                </form>
-            </div>
+            <p>Channel: <%= post.channel.name %></p>
+            <p>Title: <%= post.title %></p>
         </li>
-        <div class="admin">
-            <a href="/add-post">+ add new</a>
-        </div>
     <% }) %>
 </ul>

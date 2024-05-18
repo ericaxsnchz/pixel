@@ -3,3 +3,12 @@
 <article>
     <%= data.body %>
 </article>
+
+<% if (currentUser && data.creator.equals(currentUser._id)) { %>
+    <div>
+        <a href="/admin/edit-post/<%= data._id %>">Edit</a>
+        <form action="/admin/delete-post/<%= data._id %>?_method=DELETE" method="POST">
+            <input type="submit" value="Delete">
+        </form>
+    </div>
+<% } %>

@@ -1,21 +1,19 @@
-<form action="/add-post" method="POST">
+<form action="/admin/add-post" method="POST">
     <div>
-        <label for="title"><b>title</b></label>
-        <input type="text" placeholder="post title" name="title">  
+        <label for="title"><b>Title</b></label>
+        <input type="text" placeholder="Post title" name="title" required>
     </div>
-
     <div>
-        <label for="body"><b>body:</b></label>
-        <textarea name="body" cols="50" rows="10"></textarea>
+        <label for="body"><b>Body</b></label>
+        <textarea name="body" cols="50" rows="10" required></textarea>
     </div>
-
     <div>
-        <label for="channel">channel:</label>
+        <label for="channel">Channel:</label>
         <select name="channel" id="channel" required>
             <% channels.forEach(channel => { %>
-                <option value="<%= channel._id %>"></option>
+                <option value="<%= channel._id %>"><%= channel.name %></option>
             <% }) %>
         </select>
     </div>
-    <button type="submit">add post</button>
+    <button type="submit">Add Post</button>
 </form>

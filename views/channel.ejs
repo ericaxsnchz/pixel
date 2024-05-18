@@ -9,7 +9,7 @@
     <% posts.forEach(post => { %>
      <li>
         <h2>
-            <a href="/views/admin/edit-post.ejs"><%= post.title %></a>
+            <a href="/admin/edit-post/<%= post._id %>"><%= post.title %></a>
         </h2>
         <p>
             <%= post.body %>
@@ -22,7 +22,7 @@
     add a new post
 </h2>
 
-<form action="/views/admin/add-post.ejs" method="POST">
+<form action="/admin/add-post" method="POST">
     <input type="hidden" name="channel" value="<%= channel._id %>">
     <div>
         <label for="title">title:</label>

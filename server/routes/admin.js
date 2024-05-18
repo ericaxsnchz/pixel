@@ -62,10 +62,11 @@ router.post('/login', async (req, res) => {
         const token = jwt.sign( {userId: user._id}, jwtSecret )
         res.cookie('token', token, { httpOnly: true })
 
-        res.redirect('/dashboard');
+        res.redirect('/admin/dashboard');
 
     } catch (error) {
         console.log(error);
+        res.status(500).json({ message: 'Server error' });
     }
 });
 
@@ -145,11 +146,20 @@ router.get('/add-post', authMiddleware, async (req, res) => {
 router.post('/add-post', authMiddleware, async (req, res) => {
     try {
         const { title, body, channel } = req.body;
-        const newPost = new Post({ title, body, channel });
-        await newPost,save();
-        res.redirect('/admin/dashboard');
+        console.log('Channel ID:', channel);
+        const channelDoc = await Channel.findOne({ _id: channel });
+        console.log('Retrieved Channel:', channelDoc);
+
+        if (!channelDoc) {
+            return res.status(404).json({ message: 'channel not found' });
+        }
+
+        const newPost = new Post({ title, body, channel: channelDoc._id });
+        await newPost.save();
+        res.redirect(`/admin/channels/${channelDoc.name}`);
     } catch (error) {
         console.log(error);
+        res.status(500).send('Server error');
     }
 });
 
@@ -161,11 +171,15 @@ router.get('/edit-post/:id', async (req, res) => {
             title: "edit post",
             description: "edit your post"
         }
-        const data = await Post.findById(req.params.id);
+        const postId = req.params.id;
+        const postData = await Post.findById(postId);
         const channels = await Channel.find();
+        const channel = await Channel.findById(postData.channel);
         res.render('admin/edit-post', {
             locals,
-            data,
+            data: postData,
+            channels,
+            channel,
             layout: adminLayout
         })
     } catch (error) {
