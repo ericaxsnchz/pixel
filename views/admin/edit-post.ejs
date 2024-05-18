@@ -1,19 +1,18 @@
 <a href="/admin/channels/<%= channel.name %>">&larr; Back</a>
 <div class="admin-title">
     <h2>view/edit post</h2>
-
-    <form action="/admin/delete-post/<%= data._id %>?_method=DELETE" method="POST">
-        <input type="submit" value="delete">
-    </form>
 </div>
 
 
-<form action="/admin/edit-post/<%= data._id %>?_method=PUT" method="POST">
+<form action="/admin/edit-post/<%= data._id %>?_method=PUT&channel=<%= channel.name %>" method="POST">
     <label for="title"><b>title</b></label>
     <input type="text" placeholder="post title" name="title">
 
-    <label for="body"><b>title</b></label>
-    <textarea name="body" cols="50" rows="10"></textarea>
+    <label for="body"><b>body</b></label>
+    <textarea name="body" cols="50" rows="10"><%= data.body %></textarea>
 
     <input type="submit" value="update">
+</form>
+<form action="/admin/delete-post/<%= data._id %>/<%= channel.name %>?_method=DELETE" method="POST">
+    <input type="submit" value="delete">
 </form>

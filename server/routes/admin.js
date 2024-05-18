@@ -143,23 +143,22 @@ router.get('/add-post', authMiddleware, async (req, res) => {
 
 router.post('/add-post', authMiddleware, async (req, res) => {
     try {
-        const channelName = req.params.name;
-        console.log('channel name:', channelName);
-        const channel = await Channel.findOne({ name: channelName });
-        console.log('Retrieved Channel:', channel);
+        const { title, body, channel } = req.body;
+        const channelDoc = await Channel.findById(channel);
 
-        if (!channel) {
+        if (!channelDoc) {
             return res.status(404).json({ message: 'channel not found' });
         }
 
-        const newPost = new Post({ title, body, channel: channel.name });
+        const newPost = new Post({ title, body, channel: channelDoc._id });
         await newPost.save();
-        res.redirect(`/admin/channels/${channel.name}`);
+        res.redirect(`/admin/channels/${channelDoc.name}`);
     } catch (error) {
         console.log(error);
         res.status(500).send('Server error');
     }
 });
+
 
 // edit post
 router.get('/edit-post/:id', async (req, res) => {
@@ -179,7 +178,7 @@ router.get('/edit-post/:id', async (req, res) => {
             channels,
             channel,
             layout: adminLayout
-        })
+        });
     } catch (error) {
         console.log(error)
     }
@@ -191,23 +190,31 @@ router.put('/edit-post/:id', async (req, res) => {
         await Post.findByIdAndUpdate(req.params.id, {
             title,
             body,
+            channel,
             updatedAt: Date.now()
         });
-        res.redirect(`/admin/edit-post/${req.params.id}`)
+        const channelName = req.query.channel;
+        res.redirect(`/admin/channels/${channelName}`)
     } catch (error) {
         console.log(error)
+        res.status(500).send('server error')
     }
 });
 
 // delete post
-router.delete('/delete-post/:id', async (req, res) => {
+router.delete('/delete-post/:id/:channelName', async (req, res) => {
     try {
-        await Post.deleteOne( { _id: req.params.id } );
-        res.redirect('/admin/dashboard');
+        const postId = req.params.id;
+        await Post.deleteOne({ _id: postId });
+        
+        const channelName = req.params.channelName;
+        res.redirect(`/admin/channels/${channelName}`);
     } catch (error) {
         console.log(error);
+        res.status(500).send('server error');
     }
 });
+
 
 
 module.exports = router;
