@@ -41,6 +41,7 @@ app.use('/', require('./server/routes/main'));
 app.use('/', require('./server/routes/admin'));
 
 // login - register - home (new)
+
 app.get('/', async (req, res) => {
     res.render('index.ejs')
 });
@@ -48,6 +49,10 @@ app.get('/', async (req, res) => {
 app.get('/login', async (req, res) => {
     res.render('login.ejs');
 });
+
+app.post('/login', (req, res) => {
+
+})
 
 app.get('/register', async (req, res) => {
     res.render('register.ejs')
