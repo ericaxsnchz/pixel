@@ -1,0 +1,36 @@
+<h1>
+    Posts in <%= locals.title %>
+</h1>
+<p>
+    <%= locals.description %>
+</p>
+
+<ul>
+    <% posts.forEach(post => { %>
+     <li>
+        <h2>
+            <a href="/views/admin/edit-post.ejs"><%= post.title %></a>
+        </h2>
+        <p>
+            <%= post.body %>
+        </p>
+     </li>
+    <% }) %>
+</ul>
+
+<h2>
+    add a new post
+</h2>
+
+<form action="/views/admin/add-post.ejs" method="POST">
+    <input type="hidden" name="channel" value="<%= channel._id %>">
+    <div>
+        <label for="title">title:</label>
+        <input type="text" id="title" name="title" required>
+    </div>
+    <div>
+        <label for="body">body:</label>
+        <textarea name="body" id="body" required></textarea>
+    </div>
+    <button type="submit">add post</button>
+</form>

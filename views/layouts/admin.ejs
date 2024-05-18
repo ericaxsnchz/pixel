@@ -9,13 +9,27 @@
 </head>
 <body>
     <nav>
+        <header>header</header>
         <a href="/dashboard">dashboard</a>
         <a href="/add-post">add post</a>
         <a href="/logout">logout</a>
     </nav>
 
+    <div class="container">
+        <div class="sidebar">
+            <h2>channels</h2>
+            <ul>
+                <li><a href="/channels/Playstation">Playstation</a></li>
+                <li><a href="/channels/Xbox">Xbox</a></li>
+                <li><a href="/channels/Nintendo">Nintendo</a></li>
+                <li><a href="/channels/PC">PC</a></li>
+            </ul>
+        </div>
+        
+    </div>
+
     <div>
-        <header>header</header>
+        
         <%- body %>
 
         <footer>footer</footer>

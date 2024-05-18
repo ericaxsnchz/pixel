@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
 const User = require('../models/User');
+const Channel = require('../models/Channel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
@@ -97,38 +98,58 @@ router.get('/dashboard', async (req, res) => {
 
 });
 
-// create new post 
-router.get('/add-post', async (req, res) => {
+// channels
+router.get('/channels/:name', authMiddleware, async (req, res) => {
+    try {
+        const channel = await Channel.findOne({
+            name: req.params.name
+        });
+        if (!channel) {
+            return res.status(404).json({ message: 'channel not found' });
+        }
+        const locals = {
+            title: channel.name,
+            description: channel.description
+        };
+        const posts = await Post.find({ channel: channel._id })
+        res.render('channel', {
+            locals,
+            channel,
+            posts,
+            layout: adminLayout
+        })
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+
+// adding post
+router.get('/add-post', authMiddleware, async (req, res) => {
     try {
         const locals = {
-            title: "add post",
-            description: "add to the discusssion"
-        }
-        const data = await Post.find();
+            title: 'add post',
+            description: 'add a new post'
+        };
+        const channels = await Channel.find();
         res.render('admin/add-post', {
             locals,
+            channels,
             layout: adminLayout
-        });
+        })
     } catch (error) {
         console.log(error)
     }
 });
 
-// adding post
-router.post('/add-post', async (req, res) => {
+router.post('/add-post', authMiddleware, async (req, res) => {
     try {
-        try {
-            const newPost = new Post({
-                title: req.body.title,
-                body: req.body.body
-            });
-            await Post.create(newPost);
-            res.redirect('/dashboard');
-        } catch (error) {
-         console.log(error)   
-        }
+        const { title, body, channel } = req.body;
+        const newPost = new Post({ title, body, channel });
+        await newPost,save();
+        res.redirect('/admin/dashboard');
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
 });
 
@@ -137,13 +158,11 @@ router.get('/edit-post/:id', async (req, res) => {
     try {
 
         const locals = {
-            title: "add post",
-            description: "add to the discusssion"
+            title: "edit post",
+            description: "edit your post"
         }
-
-        const data = await Post.findOne({ _id: req.params.id });
-
-
+        const data = await Post.findById(req.params.id);
+        const channels = await Channel.find();
         res.render('admin/edit-post', {
             locals,
             data,
@@ -154,16 +173,15 @@ router.get('/edit-post/:id', async (req, res) => {
     }
 });
 
-
-// edit post
 router.put('/edit-post/:id', async (req, res) => {
     try {
+        const { title, body, channel } = req.body;
         await Post.findByIdAndUpdate(req.params.id, {
-            title: req.body.title,
-            body: req.body.body,
+            title,
+            body,
             updatedAt: Date.now()
         });
-        res.redirect(`/edit-post/${req.params.id}`)
+        res.redirect(`/admin/edit-post/${req.params.id}`)
     } catch (error) {
         console.log(error)
     }
@@ -173,7 +191,7 @@ router.put('/edit-post/:id', async (req, res) => {
 router.delete('/delete-post/:id', async (req, res) => {
     try {
         await Post.deleteOne( { _id: req.params.id } );
-        res.redirect('/dashboard');
+        res.redirect('/admin/dashboard');
     } catch (error) {
         console.log(error);
     }
