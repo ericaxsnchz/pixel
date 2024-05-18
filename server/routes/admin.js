@@ -4,6 +4,7 @@ const Post = require('../models/Post');
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 
 const adminLayout = '../views/layouts/admin';
 const jwtSecret = process.env.JWT_SECRET;
@@ -14,6 +15,11 @@ router.post('/register', async (req, res) => {
     try {
         const { username, password } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = new User ({
+            username,
+            password: hashedPassword
+        });
+        await newUser.save();
         res.redirect('/login')
     } catch (error) {
         console.log(error);
@@ -21,7 +27,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-// check login
+// // check login
 // const authMiddleware = (req, res, next) => {
 //     const token = req.cookies.token;
     
@@ -38,48 +44,48 @@ router.post('/register', async (req, res) => {
 //     }
 // }
 
+// admin - login page
+router.get('/login', async (req, res) => {
+    try {
+        const locals = {
+            title: "pixel",
+            description: "add to the discusssion"
+        }
 
+        res.render('login', { locals, layout: adminLayout });
+    } catch (error) {
+        console.log(error);
+    }
+});
 
+// check login
 
-// // admin - login page
-// router.get('/admin', async (req, res) => {
-//     try {
-//         const locals = {
-//             title: "admin",
-//             description: "add to the discusssion"
-//         }
+router.post('/login', async (req, res) => {
+    try {
+        const { username, password } = req.body;
+        const user = await User.findOne( {username} );
 
-//         res.render('admin/login', { locals, layout: adminLayout });
-//     } catch (error) {
-//         console.log(error);
-//     }
-// });
+        if(!user) {
+            return res.status(401).json( {message: 'Invalid credentials' });
+        }
 
-// // admin - check login
-
-// router.post('/admin', async (req, res) => {
-//     try {
-//         const { username, password } = req.body;
-//         const user = await User.findOne( {username} );
-
-//         if(!user) {
-//             return res.status(401).json( {message: 'Invalid credentials' });
-//         }
-
-//         const isPasswordValid = await bcrypt.compare(password, user.password);
-//         if(!isPasswordValid) {
-//             return res.status(401).json( {message: 'Invalid credentials' });
-//         }
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if(!isPasswordValid) {
+            return res.status(401).json( {message: 'Invalid credentials' });
+        }
         
-//         const token = jwt.sign( {userId: user._id}, jwtSecret )
-//         res.cookie('token', token, { httpOnly: true })
+        const token = jwt.sign( {userId: user._id}, jwtSecret )
+        res.cookie('token', token, { httpOnly: true })
 
-//         res.redirect('/dashboard');
+        res.redirect('/dashboard');
 
-//     } catch (error) {
-//         console.log(error);
-//     }
-// });
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+
 
 // dashboard 
 router.get('/dashboard', async (req, res) => {
