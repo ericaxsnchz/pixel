@@ -9,8 +9,24 @@ const cookieParser = require('cookie-parser');
 const adminLayout = '../views/layouts/admin';
 const jwtSecret = process.env.JWT_SECRET;
 
-// register
+// authorize
+const authMiddleware = (req, res, next) => {
+    const token = req.cookies.token;
+    
+    if(!token) {
+        return res.status(401).json({ message: 'unauthorized' });
+    } 
 
+    try {
+        const decoded = jwt.verify(token, jwtSecret);
+        req.userId = decoded.userId;
+        next();
+    } catch (error) {
+        res.status(401).json({ message: 'unauthorized' });
+    }
+}
+
+// register
 router.post('/register', async (req, res) => {
     try {
         const { username, password } = req.body;
@@ -27,39 +43,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-// // check login
-// const authMiddleware = (req, res, next) => {
-//     const token = req.cookies.token;
-    
-//     if(!token) {
-//         return res.status(401).json({ message: 'unauthorized' });
-//     } 
-
-//     try {
-//         const decoded = jwt.verify(token, jwtSecret);
-//         req.userId = decoded.userId;
-//         next();
-//     } catch (error) {
-//         res.status(401).json({ message: 'unauthorized' });
-//     }
-// }
-
-// admin - login page
-router.get('/login', async (req, res) => {
-    try {
-        const locals = {
-            title: "pixel",
-            description: "add to the discusssion"
-        }
-
-        res.render('login', { locals, layout: adminLayout });
-    } catch (error) {
-        console.log(error);
-    }
-});
-
-// check login
-
+// login
 router.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
@@ -83,6 +67,13 @@ router.post('/login', async (req, res) => {
         console.log(error);
     }
 });
+
+// logout
+router.get('/logout', (req, res) => {
+    res.clearCookie('token');
+    res.redirect('/login');
+});
+
 
 
 
