@@ -17,6 +17,12 @@
         <p>
             posted by: <%= post.user ? post.user.username : 'unknown' %>
         </p>
+        <% if (post.user && post.user._id.toString() === user._id.toString()) { %>
+            <a href="/admin/edit-post/<%= post._id %>">edit</a>
+            <form action="/admin/delete-post/<%= post._id %>/<%= channel.name %>?_method=DELETE" method="POST">
+                <input type="submit" value="Delete">
+            </form>
+        <% } %>
      </li>
     <% }) %>
 </ul>
