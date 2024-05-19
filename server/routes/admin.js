@@ -109,7 +109,7 @@ router.get('/channels/:name', authMiddleware, async (req, res) => {
             title: channel.name,
             description: channel.description
         };
-        const posts = await Post.find({ channel: channel._id })
+        const posts = await Post.find({ channel: channel._id }).populate('user');
         res.render('channel', {
             locals,
             channel,
@@ -144,13 +144,19 @@ router.get('/add-post', authMiddleware, async (req, res) => {
 router.post('/add-post', authMiddleware, async (req, res) => {
     try {
         const { title, body, channel } = req.body;
+        const userId = req.userId;
         const channelDoc = await Channel.findById(channel);
 
         if (!channelDoc) {
             return res.status(404).json({ message: 'channel not found' });
         }
 
-        const newPost = new Post({ title, body, channel: channelDoc._id });
+        const newPost = new Post({ 
+            title, 
+            body, 
+            channel: channelDoc._id,
+            user: req.userId
+        });
         await newPost.save();
         res.redirect(`/admin/channels/${channelDoc.name}`);
     } catch (error) {

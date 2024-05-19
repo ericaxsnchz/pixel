@@ -14,6 +14,9 @@
         <p>
             <%= post.body %>
         </p>
+        <p>
+            posted by: <%= post.user ? post.user.username : 'unknown' %>
+        </p>
      </li>
     <% }) %>
 </ul>
