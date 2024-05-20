@@ -4,19 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= locals.title  %></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
     <script type="text/javascript" defer src="/js/script.js"></script>
 </head>
-<body>
+<body class="dashboard">
     <nav>
-        <header>header</header>
-        <a href="/admin/dashboard">dashboard</a>
-        <a href="/admin/logout">logout</a>
+        <h2 class="logo-nav">
+            pixel
+        </h2>
+        <a href="/admin/dashboard" class="nav-link">dashboard</a>
+        <a href="/admin/logout" class="nav-link">logout</a>
     </nav>
     
     <div class="container">
         <div class="sidebar">
-            <h2>channels</h2>
+            <h2 class="captions">channels</h2>
             <ul>
                 <li><a href="/admin/channels/Nintendo">Nintendo</a></li>
                 <li><a href="/admin/channels/Playstation">Playstation</a></li>
@@ -28,10 +33,12 @@
     
 
     <div>
-        
+        <h2 class="captions">latest posts:</h2>
         <%- body %>
 
-        <footer>footer</footer>
+        <footer>
+            &copy; erica penaflor | 2024
+        </footer>
     </div>
 </body>
 </html>

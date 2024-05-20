@@ -1,3 +1,106 @@
 body {
-    background-color: purple;
+    background: linear-gradient(45deg, rgb(23, 24, 89), rgb(72, 12, 168));
+    height: 100vh;
+    font-family: 'Teachers', 'sans-serif';
 }
+
+.logo {
+    color: white;
+    font-family: 'Poetsen One', 'sans-serif';
+    font-size: 100px;
+    margin: 20px;
+}
+
+.login-page {
+    color: white;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+}
+
+.login-register {
+    margin: 10px;
+}
+
+input {
+    font-family: 'Teachers', sans-serif;
+    font-size: 1rem;
+    height: 45px;
+    width: 300px;
+    margin: 10px;
+    padding: 0px 20px;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    font-family: 'Teachers', sans-serif;
+    font-size: 1rem;
+    height: 45px;
+    width: 300px; 
+    margin: 20px 0;
+    padding: 0 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    color: rgb(23, 24, 89);
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(23, 24, 89);
+    color: white;
+}
+
+.reg-log {
+    margin: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.reg-log:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    color: white;
+    position: absolute;
+    bottom: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.logo-nav {
+    color: white;
+    font-family: 'Poetsen One', 'sans-serif';
+    font-size: 50px;
+}
+
+.dashboard {
+    color: white;
+}
+

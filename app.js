@@ -14,6 +14,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('./server/models/User');
+const adminRouter = require('./server/routes/admin');
 
 
 const connectDB = require('./server/config/db');
@@ -26,11 +27,9 @@ const PORT = 8000 || process.env.PORT;
 connectDB();
 
 // middleware
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.json());
-app.use(bodyParser.json());
-
 app.use(cookieParser());
 app.use(methodOverride('_method'));
 app.use(expressSession({
@@ -46,37 +45,45 @@ app.use(flash());
 app.use(express.static('public'));
 
 app.use((req, res, next) => {
-    console.log('Session:', req.session);
-    console.log('User:', req.user);
     next();
 });
+
 
 
 // passport initialization
 app.use(passport.initialize());
 app.use(passport.session());
 
+// check
+// app.use('/admin', adminRouter);
+
+
 passport.use(new LocalStrategy(
     async function(username, password, done) {
         try {
-            const user = await User.findOne({ username: username });
-            console.log('user found: ', user);
+            const user = await User.findOne({ username });
+            console.log('User found:', user);
             if (!user) {
-                return done(null, false, { message: 'incorrect username' })
+                return done(null, false, { message: 'Incorrect username' });
             }
+
+            console.log('Provided password:', password);
+            console.log('Stored password:', user.password);
+
             const isPasswordValid = await user.verifyPassword(password);
-            console.log(`password valid: ${isPasswordValid}`);
+            console.log(`Password valid: ${isPasswordValid}`);
+            
             if (!isPasswordValid) {
-                console.log('incorrect password')
-                return done(null, false, { message: 'incorrect password' })
+                return done(null, false, { message: 'Incorrect password' });
             }
+
             return done(null, user);
         } catch (error) {
-            console.error('error in local strategy', error);
             return done(error);
         }
     }
 ));
+
 
 // serialize and deserialize user
 passport.serializeUser((user, done) => {
@@ -86,19 +93,13 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser(async (id, done) => {
     try {
         const user = await User.findById(id);
-        console.log('deserialized user: ', user)
         done(null, user);
     } catch (error) {
-        console.log('error in deserialization:', error)
         done(err, null)
     }
 });
 
-app.post('/login', passport.authenticate('local', {
-    successRedirect: '/admin/dashboard',
-    failureRedirect: '/login',
-    failureFlash: true 
-}));
+
 
 
 // template engine
@@ -120,16 +121,9 @@ app.get('/', async (req, res) => {
     res.render('index.ejs')
 });
 
-app.get('/register', async (req, res) => {
-    try {
-        const { username, password } = req.body;
-        const newUser = new User({ username, password });
-        await newUser.save();
-        res.redirect('/login');
-    } catch (error) {
-        console.log('Registration error:', error);
+app.get('/register', (req, res) => {
     res.render('register.ejs')
-}});
+});
 
 app.get('/login', (req, res) => {
     console.log('flash messages: ', req.flash('error'));
@@ -140,11 +134,8 @@ app.get('/login', (req, res) => {
 });
 
 app.get('/logout', (req, res) => {
-    req.logout((err) => {
-        if (err) { return next(err) }
-        res.clearCookie('token');
-        res.redirect('/login')
-    });
+    req.logout();
+    res.redirect('/login');
 });
 
 app.get('/admin/dashboard', (req, res) => {

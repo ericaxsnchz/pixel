@@ -13,32 +13,11 @@ const jwtSecret = process.env.JWT_SECRET;
 
 // authorize
 const authMiddleware = (req, res, next) => {
-    console.log('Auth Middleware: Checking authentication');
-    console.log('User authenticated:', req.isAuthenticated());
-    console.log('User:', req.user);
-
-
     if(req.isAuthenticated()) {
         return next();
     } else {
         res.status(401).json({ message: 'unauthorized' });
     }
-
-    // try {
-    //     const decoded = jwt.verify(token, jwtSecret);
-    //     req.userId = decoded.userId;
-    //     req.username = decoded.username;
-    //     req.user = {
-    //         _id: decoded.userId,
-    //         username: decoded.username
-    //     }
-    //     console.log('Session:', req.session);
-    //     console.log('User:', req.user);
-    //     next();
-    // } catch (error) {
-    //     console.log('JWT verification error:', error);
-    //     res.status(401).json({ message: 'unauthorized' });
-    // }
 }
 
 // register
@@ -46,73 +25,46 @@ router.post('/register', async (req, res) => {
     try {
         const { username, password } = req.body;
         if (!username || !password) {
-            return res.status(400).json({ message: 'username and password required' })
+            return res.status(400).json({ message: 'username and password required' });
         }
         const existingUser = await User.findOne({ username });
         if (existingUser) {
             return res.status(400).json({ message: 'username already exists' });
         }
-        const User = new User({
-            username,
-            password
-        });
-        await User.save();
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = new User({ username, password: hashedPassword });
+        await newUser.save();
+        const savedUser = await User.findOne({ username });
+        res.redirect('/login');
     } catch (error) {
         console.log('Registration error:', error);
-        res.status(500).json({ message: 'internal server error' })
+        res.status(500).json({ message: 'internal server error' });
     }
 });
 
 // login
-router.post('/login', async (req, res, next) => {
-    try {
-        const { username, password } = req.body;
-    //     const user = await User.findOne( {username} );
-
-        console.log('login attempt: ', req.body);
-        passport.authenticate('local', (err, user, info) => {
+router.post('/login', (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+        if (err) {
+            console.error('Error during authentication:', err);
+            return next(err);
+        }
+        if (!user) {
+            console.log('Authentication failed:', info.message);
+            req.flash('error', info.message);
+            return res.redirect('/login');
+        }
+        req.login(user, (err) => {
             if (err) {
+                console.error('Error during login:', err);
                 return next(err);
             }
-            if (!user) {
-                req.flash('error', info.message);
-                return res.redirect('/login');
-            }
-            req.logIn(user, (err) => {
-                if (err) {
-                    return next(err);
-                }
-                return res.redirect('/admin/dashboard');
-            });
+            console.log('User logged in successfully:', user.username);
+            return res.redirect('/admin/dashboard');
+        });
+        console.log('Password received:', req.body.password);
 
-        }) (req, res, next);
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: 'server error' })
-    }
-
-        // if(!user) {
-        //     req.flash('error', 'invalid credentials');
-        //     return res.status(401).redirect('/login');
-        // }
-
-        // const isPasswordValid = await bcrypt.compare(password, user.password);
-        // if(!isPasswordValid) {
-        //     req.flash('error', 'invalid credentials2');
-        //     return res.status(401).redirect('/login');
-        // }
-
-        // console.log("Authenticated user:", user);
-        
-        // const token = jwt.sign( {userId: user._id}, jwtSecret )
-        // res.cookie('token', token, { httpOnly: true })
-
-        // res.redirect('/admin/dashboard');
-
-    // } catch (error) {
-    //     console.log(error);
-    //     res.status(500).json({ message: 'Server error' });
-    // }
+    })(req, res, next);
 });
 
 // logout
@@ -148,12 +100,10 @@ router.get('/dashboard', authMiddleware, async (req, res) => {
 router.get('/channels/:name', authMiddleware, async (req, res) => {
     try {
         const channelName = req.params.name;
-        console.log('channel name:', channelName);
         const channel = await Channel.findOne({ name: channelName });
         if (!channel) {
             return res.status(404).json({ message: 'channel not found' });
         }
-        console.log('channel found: ', channel);
         const locals = {
             title: channel.name,
             description: channel.description
@@ -195,8 +145,6 @@ router.get('/add-post', authMiddleware, async (req, res) => {
 
 router.post('/add-post', authMiddleware, async (req, res) => {
     try {
-        console.log('Add Post Route: User ID:', req.user);
-        console.log('Add Post Route: Username:', req.username);
         const { title, body, channel } = req.body;
         const userId = req.userId;
         const channelDoc = await Channel.findById(channel);
@@ -215,7 +163,6 @@ router.post('/add-post', authMiddleware, async (req, res) => {
         await newPost.save();
         res.redirect(`/admin/channels/${channelDoc.name}`);
     } catch (error) {
-        console.log(error);
         res.status(500).send('Server error');
     }
 });
@@ -251,7 +198,6 @@ router.get('/edit-post/:id', authMiddleware, async (req, res) => {
             user: req.user
         });
     } catch (error) {
-        console.log(error)
     }
 });
 
@@ -278,7 +224,6 @@ router.put('/edit-post/:id', authMiddleware, async (req, res) => {
         const channelName = req.query.channel;
         res.redirect(`/admin/channels/${channelName}`)
     } catch (error) {
-        console.log(error)
         res.status(500).send('server error')
     }
 });

@@ -1,15 +1,20 @@
-<h2>login</h2>
+<h2 class="login-register">login</h2>
+<% if (messages && messages.length > 0) { %>
+    <div class="alert alert-danger">
+        <% messages.forEach(message => { %>
+            <p><%= message %></p>
+        <% }) %>
+    </div>
+<% } %>
 <form action="/admin/login" method="POST">
-    <div>
-        <label for="username">username</label>
-        <input type="text" id="username" name="username" required></input>
+    <div class="login-input">
+        <input type="text" placeholder="username" id="username" name="username" required></input>
     </div>
 
-    <div>
-        <label for="password">password</label>
-        <input type="password" id="password" name="password" required></input>
+    <div class="login-input">
+        <input type="password" placeholder="password" id="password" name="password" required></input>
     </div>
 
     <button type="submit">login</button>
 </form>
-<a href="/register">register</a>
+<a href="/register" class="reg-log">register</a>
