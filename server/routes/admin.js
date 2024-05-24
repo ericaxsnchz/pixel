@@ -145,7 +145,7 @@ router.get('/add-post', authMiddleware, async (req, res) => {
 
 router.post('/add-post', authMiddleware, async (req, res) => {
     try {
-        const { title, body, channel } = req.body;
+        const { body, channel } = req.body;
         const userId = req.userId;
         const channelDoc = await Channel.findById(channel);
 
@@ -154,7 +154,6 @@ router.post('/add-post', authMiddleware, async (req, res) => {
         }
 
         const newPost = new Post({ 
-            title, 
             body, 
             channel: channelDoc._id,
             user: req.user,
@@ -163,6 +162,7 @@ router.post('/add-post', authMiddleware, async (req, res) => {
         await newPost.save();
         res.redirect(`/admin/channels/${channelDoc.name}`);
     } catch (error) {
+        console.log(error)
         res.status(500).send('Server error');
     }
 });
@@ -187,6 +187,8 @@ router.get('/edit-post/:id', authMiddleware, async (req, res) => {
             return res.status(403).json({ message: 'forbidden: you are not authorized to edit this post'});
         }
 
+        const posts = await Post.find({ channel: postData.channel });
+
         const channels = await Channel.find();
         const channel = await Channel.findById(postData.channel);
         res.render('admin/edit-post', {
@@ -194,6 +196,7 @@ router.get('/edit-post/:id', authMiddleware, async (req, res) => {
             data: postData,
             channels,
             channel,
+            posts,
             layout: adminLayout,
             user: req.user
         });

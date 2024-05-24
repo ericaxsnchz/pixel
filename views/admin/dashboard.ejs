@@ -1,8 +1,11 @@
-<ul>
+<h2 class="captions">latest posts</h2>
+<ul class="dash-posts">
     <% data.forEach(post => { %>
-        <li>
-            <p>Channel: <a href="/admin/channels/<%= post.channel.name %>"><%= post.channel.name %></a></p>
-            <p>Title: <a href="/admin/channels/<%= post.channel.name %>"><%= post.title %></a></p>
+        <li class="dash-li">
+            <p class="dash-channel"><a class="dash-a" href="/admin/channels/<%= post.channel.name %>"><%= post.channel.name %></a></p>
+            <p class="dash-post"><%= post.body %></p>
+            <p><%= post.createdAt %></p>
+            <hr>
         </li>
     <% }) %>
 </ul>

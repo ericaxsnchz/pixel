@@ -40,25 +40,3 @@ module.exports = router;
 
 
 
-// function insertPostData () {
-//     Post.insertMany([
-//         {
-//             title: "Playstation",
-//             body: "This is the Playstation channel!"
-//         },
-//         {
-//             title: "XBOX",
-//             body: "This is the XBOX channel!"
-//         },{
-//             title: "Nintendo",
-//             body: "This is the Nintendo channel!"
-//         },{
-//             title: "PC",
-//             body: "This is the PC channel!"
-//         }
-//     ])
-// }
-// insertPostData();
-
-
-

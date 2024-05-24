@@ -6,17 +6,21 @@
     <title>pixel</title>
 </head>
 <body>
-    <h1>home</h1>
-    <ul>
-       <% data.forEach(post => { %>
-        <li>
-            <a href="/post/<%= post._id %>">
-                <span><%= post.title %></span> 
-            </a>
-        </li>
-    
-        <% }) %> 
-    </ul>
+    <div class="container-home">
+        <p class="p-home">
+            welcome to pixel! join our community of gamers where we share tips, tricks, ask questions, and share new things!
+        </p>
+    </div>
+    <div class="container-home">
+        <p class="p-home">
+            ready to join the conversation?
+        </p>
+        <p>
+        <button class="sign-btn"><a href="/login" class="home-link">login</a></button>
+        or
+        <button class="sign-btn"><a href="/register" class="home-link">register</a></button>
+        </p>
+    </div>
     
 </body>
 </html>

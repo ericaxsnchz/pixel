@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/541629fd61.js" crossorigin="anonymous"></script>
     <script type="text/javascript" defer src="/js/script.js"></script>
 </head>
 <body class="dashboard">
@@ -20,25 +21,24 @@
     </nav>
     
     <div class="container">
+        <h2 class="captions">channels</h2>
         <div class="sidebar">
-            <h2 class="captions">channels</h2>
             <ul>
-                <li><a href="/admin/channels/Nintendo">Nintendo</a></li>
-                <li><a href="/admin/channels/Playstation">Playstation</a></li>
-                <li><a href="/admin/channels/PC">PC</a></li>
-                <li><a href="/admin/channels/Xbox">Xbox</a></li>
+                <li class="sidebar-li"><a href="/admin/channels/Nintendo" class="channels">Nintendo</a></li>
+                <li class="sidebar-li"><a href="/admin/channels/Playstation" class="channels">Playstation</a></li>
+                <li class="sidebar-li"><a href="/admin/channels/PC" class="channels">PC</a></li>
+                <li class="sidebar-li"><a href="/admin/channels/Xbox" class="channels">Xbox</a></li>
             </ul>
         </div>
     </div>
     
 
-    <div>
-        <h2 class="captions">latest posts:</h2>
+    <div class="container wide-container">
         <%- body %>
-
-        <footer>
-            &copy; erica penaflor | 2024
-        </footer>
     </div>
+    
+    <footer>
+        &copy; erica penaflor | 2024
+    </footer>
 </body>
 </html>
