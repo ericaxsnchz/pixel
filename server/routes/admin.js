@@ -7,6 +7,7 @@ const Channel = require('../models/Channel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
+const moment = require('moment');
 
 const adminLayout = '../views/layouts/admin';
 const jwtSecret = process.env.JWT_SECRET;
@@ -35,7 +36,6 @@ const authMiddleware = async (req, res, next) => {
 router.post('/register', async (req, res) => {
     try {
         const { username, password } = req.body;
-        console.log('Registering user:', username);
 
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = new User({
@@ -44,10 +44,8 @@ router.post('/register', async (req, res) => {
         });
         await newUser.save();
 
-        console.log('User registered successfully:', username);
         res.redirect('/login');
     } catch (error) {
-        console.log('Error during registration:', error);
         res.redirect('/register');
     }
 });
@@ -56,24 +54,17 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
-        console.log('Attempting login for user:', username);
 
         const user = await User.findOne({ username });
         if (!user) {
-            console.log('User not found');
             return res.status(401).json({ message: 'Invalid credentials' });
         }
-
-        console.log('Stored hashed password:', user.password);
-        console.log('Entered password:', password);
 
         const token = jwt.sign({ userId: user._id }, jwtSecret);
         res.cookie('token', token, { httpOnly: true });
 
-        console.log('Login successful, redirecting to /dashboard');
         res.redirect('/admin/dashboard');
     } catch (error) {
-        console.log('Error during login:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 });
@@ -98,6 +89,7 @@ router.get('/dashboard', authMiddleware, async (req, res) => {
         const currentUser = req.user;
         res.render('admin/dashboard', {
             data,
+            moment,
             layout: adminLayout,
             user: req.user
         });
@@ -122,18 +114,16 @@ router.get('/channels/:name', authMiddleware, async (req, res) => {
             description: channel.description
         };
 
-        console.log('current user:', req.user);
-
         res.render('channel', {
             locals,
             channel,
             posts,
+            moment,
             currentUserId: req.user._id,
             user: req.user,
             layout: adminLayout
         })
     } catch (error) {
-        console.log(error);
         res.status(500).json({ message: 'internal server error'});
     }
 })
@@ -176,7 +166,6 @@ router.post('/add-post', authMiddleware, async (req, res) => {
         await newPost.save();
         res.redirect(`/admin/channels/${channelDoc.name}`);
     } catch (error) {
-        console.log(error)
         res.status(500).send('Server error');
     }
 });
@@ -259,7 +248,6 @@ router.delete('/delete-post/:id/:channelName', authMiddleware, async (req, res) 
         const channelName = req.params.channelName;
         res.redirect(`/admin/channels/${channelName}`)
     } catch (error) {
-        console.log(error);
         res.status(500).send('server error');
     }
 });

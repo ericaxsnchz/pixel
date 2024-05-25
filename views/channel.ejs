@@ -12,6 +12,7 @@
                     </p>
                     <h4>
                         @<%= post.user ? post.user.username : 'unknown' %>
+                        <span class="post-date"><%= moment(post.createdAt).format('MM/DD/YYYY hh:mm A') %></span>
                     </h4>
                 </div>    
                 <% if (post.user && post.user._id && user && post.user._id.toString() === user._id.toString()) { %>

@@ -120,7 +120,6 @@ app.get('/register', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-    console.log('flash messages: ', req.flash('error'));
     res.render('login.ejs', { 
         messages: req.flash('error'),
         user: req.user 
@@ -142,5 +141,5 @@ app.get('/admin/dashboard', (req, res) => {
 
 
 app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}`);
+    
 });

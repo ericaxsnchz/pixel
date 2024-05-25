@@ -2,9 +2,9 @@
 <ul class="dash-posts">
     <% data.forEach(post => { %>
         <li class="dash-li">
-            <p class="dash-channel"><a class="dash-a" href="/admin/channels/<%= post.channel.name %>"><%= post.channel.name %></a></p>
+            <p><a class="dash-a" href="/admin/channels/<%= post.channel.name %>"><%= post.channel.name %></a></p>
             <p class="dash-post"><%= post.body %></p>
-            <p><%= post.createdAt %></p>
+            <p class="date-dash"><%= moment(post.createdAt).format('MM/DD/YYYY hh:mm A') %></p>
             <hr>
         </li>
     <% }) %>

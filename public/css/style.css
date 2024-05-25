@@ -184,7 +184,12 @@ ul {
     box-sizing: border-box;
 }
 
+.dash-post {
+    margin-bottom: 5px;
+}
+
 .dash-a {
+    font-family: 'Poetsen One', 'sans-serif';
     color: white;
     text-decoration: none;
     font-size: 25px;
@@ -193,6 +198,11 @@ ul {
 .dash-a:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+
+.date-dash {
+    font-size: 15px;
+    margin-top: 5px;
 }
 
 .locals-title {
@@ -205,6 +215,12 @@ ul {
 .post-body {
     margin: 5px;
     font-size: 20px;
+}
+
+.post-date {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.551);
+    font-weight: normal;
 }
 
 h4 {

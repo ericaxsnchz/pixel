@@ -34,7 +34,6 @@ const initChannels = async () => {
             await newChannel.save();
         }
     }
-    console.log('channels initialized');
     mongoose.disconnect();
 }
 
