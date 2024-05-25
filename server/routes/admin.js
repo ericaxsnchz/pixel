@@ -12,11 +12,22 @@ const adminLayout = '../views/layouts/admin';
 const jwtSecret = process.env.JWT_SECRET;
 
 // authorize
-const authMiddleware = (req, res, next) => {
-    if(req.isAuthenticated()) {
-        return next();
-    } else {
-        res.status(401).json({ message: 'unauthorized' });
+const authMiddleware = async (req, res, next) => {
+    const token = req.cookies.token;
+    if (!token) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+    try {
+        const decoded = jwt.verify(token, jwtSecret);
+        req.userId = decoded.userId;
+        const user = await User.findById(req.userId);
+        if (!user) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+        req.user = user;
+        next();
+    } catch (error) {
+        res.status(401).json({ message: 'Unauthorized' });
     }
 }
 
@@ -24,47 +35,47 @@ const authMiddleware = (req, res, next) => {
 router.post('/register', async (req, res) => {
     try {
         const { username, password } = req.body;
-        if (!username || !password) {
-            return res.status(400).json({ message: 'username and password required' });
-        }
-        const existingUser = await User.findOne({ username });
-        if (existingUser) {
-            return res.status(400).json({ message: 'username already exists' });
-        }
+        console.log('Registering user:', username);
+
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = new User({ username, password: hashedPassword });
+        const newUser = new User({
+            username,
+            password: hashedPassword
+        });
         await newUser.save();
-        const savedUser = await User.findOne({ username });
+
+        console.log('User registered successfully:', username);
         res.redirect('/login');
     } catch (error) {
-        console.log('Registration error:', error);
-        res.status(500).json({ message: 'internal server error' });
+        console.log('Error during registration:', error);
+        res.redirect('/register');
     }
 });
 
-// login
-router.post('/login', (req, res, next) => {
-    passport.authenticate('local', (err, user, info) => {
-        if (err) {
-            console.error('Error during authentication:', err);
-            return next(err);
-        }
-        if (!user) {
-            console.log('Authentication failed:', info.message);
-            req.flash('error', info.message);
-            return res.redirect('/login');
-        }
-        req.login(user, (err) => {
-            if (err) {
-                console.error('Error during login:', err);
-                return next(err);
-            }
-            console.log('User logged in successfully:', user.username);
-            return res.redirect('/admin/dashboard');
-        });
-        console.log('Password received:', req.body.password);
+// check login
+router.post('/login', async (req, res) => {
+    try {
+        const { username, password } = req.body;
+        console.log('Attempting login for user:', username);
 
-    })(req, res, next);
+        const user = await User.findOne({ username });
+        if (!user) {
+            console.log('User not found');
+            return res.status(401).json({ message: 'Invalid credentials' });
+        }
+
+        console.log('Stored hashed password:', user.password);
+        console.log('Entered password:', password);
+
+        const token = jwt.sign({ userId: user._id }, jwtSecret);
+        res.cookie('token', token, { httpOnly: true });
+
+        console.log('Login successful, redirecting to /dashboard');
+        res.redirect('/admin/dashboard');
+    } catch (error) {
+        console.log('Error during login:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
 });
 
 // logout
@@ -104,16 +115,20 @@ router.get('/channels/:name', authMiddleware, async (req, res) => {
         if (!channel) {
             return res.status(404).json({ message: 'channel not found' });
         }
+        
+        const posts = await Post.find({ channel: channel._id }).populate('user').populate('channel');
         const locals = {
             title: channel.name,
             description: channel.description
         };
-        const posts = await Post.find({ channel: channel._id }).populate('user').populate('channel');
+
+        console.log('current user:', req.user);
+
         res.render('channel', {
             locals,
             channel,
             posts,
-            currentUserId: req.userId,
+            currentUserId: req.user._id,
             user: req.user,
             layout: adminLayout
         })
@@ -146,7 +161,6 @@ router.get('/add-post', authMiddleware, async (req, res) => {
 router.post('/add-post', authMiddleware, async (req, res) => {
     try {
         const { body, channel } = req.body;
-        const userId = req.userId;
         const channelDoc = await Channel.findById(channel);
 
         if (!channelDoc) {

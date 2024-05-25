@@ -62,17 +62,11 @@ passport.use(new LocalStrategy(
     async function(username, password, done) {
         try {
             const user = await User.findOne({ username });
-            console.log('User found:', user);
             if (!user) {
                 return done(null, false, { message: 'Incorrect username' });
             }
 
-            console.log('Provided password:', password);
-            console.log('Stored password:', user.password);
-
-            const isPasswordValid = await user.verifyPassword(password);
-            console.log(`Password valid: ${isPasswordValid}`);
-            
+            const isPasswordValid = await bcrypt.compare(password, user.password);            
             if (!isPasswordValid) {
                 return done(null, false, { message: 'Incorrect password' });
             }

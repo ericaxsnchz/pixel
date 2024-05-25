@@ -18,3 +18,32 @@
     <button class="sign-btn" type="submit">login</button>
 </form>
 <a href="/register" class="reg-log">register</a>
+
+<script>
+    document.getElementById('login-form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        
+        const formData = new FormData(event.target);
+        const formDataObject = Object.fromEntries(formData.entries());
+        
+        try {
+            const response = await fetch('/admin/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formDataObject)
+            });
+    
+            if (response.ok) {
+                window.location.href = '/admin/dashboard';
+            } else {
+                const errorData = await response.json();
+                alert(errorData.message);
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+            alert('An error occurred. Please try again.');
+        }
+    });
+    </script>

@@ -14,7 +14,7 @@
                         @<%= post.user ? post.user.username : 'unknown' %>
                     </h4>
                 </div>    
-                <% if (post.user && post.user._id.toString() === user._id.toString()) { %>
+                <% if (post.user && post.user._id && user && post.user._id.toString() === user._id.toString()) { %>
                     <div class="post-actions">
                         <a href="/admin/edit-post/<%= post._id %>"><i class="fa-solid fa-pen-to-square fa-btn"></i></a>
                         <form action="/admin/delete-post/<%= post._id %>/<%= channel.name %>?_method=DELETE" method="POST">
