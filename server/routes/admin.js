@@ -201,16 +201,11 @@ router.get('/edit-post/:id', authMiddleware, async (req, res) => {
             return res.status(403).json({ message: 'forbidden: you are not authorized to edit this post'});
         }
 
-        const posts = await Post.find({ channel: postData.channel });
-
-        const channels = await Channel.find();
         const channel = await Channel.findById(postData.channel);
         res.render('admin/edit-post', {
             locals,
             data: postData,
-            channels,
             channel,
-            posts,
             layout: adminLayout,
             user: req.user
         });
@@ -222,11 +217,10 @@ router.put('/edit-post/:id', authMiddleware, async (req, res) => {
     try {
         const { title, body, channel } = req.body;
         await Post.findByIdAndUpdate(req.params.id, {
-            title,
             body,
             channel,
             updatedAt: Date.now()
-        });
+        }, { new: true});
 
         const postData = await Post.findById(req.params.id);
 
