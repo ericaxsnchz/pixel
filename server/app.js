@@ -13,11 +13,12 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const User = require('./server/models/User');
-const adminRouter = require('./server/routes/admin');
+const User = require('./models/User');
+const connectDB = require('./config/db');
+const adminRouter = require('./routes/admin');
 
 
-const connectDB = require('./server/config/db');
+
 
 const app = express();
 const PORT = 8000 || process.env.PORT;
@@ -98,11 +99,11 @@ passport.deserializeUser(async (id, done) => {
 
 // template engine
 app.use(expressLayout);
-app.set('layout', './layouts/main');
+app.set('layout', '../views/layouts/main');
 app.set('view engine', 'ejs');
 
-app.use('/', require('./server/routes/main'));
-app.use('/admin', require('./server/routes/admin'));
+app.use('/', require('./routes/main'));
+app.use('/admin', require('./routes/admin'));
 
 // Protected route example
 app.get('/admin', (req, res) => {
