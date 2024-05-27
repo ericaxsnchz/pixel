@@ -11,5 +11,11 @@
             "src": "/(.*)",
             "dest": "server/app.js"
         }
-    ]
+    ],
+    "functions": {
+        "api/*": {
+          "runtime": "nodejs14.x",
+          "timeout": 30
+        }
+      }
 }
