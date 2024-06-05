@@ -46,8 +46,12 @@ app.use(flash());
 app.use(express.static('public'));
 
 app.use((req, res, next) => {
+    res.setTimeout(30000, () => {
+      console.log('Request has timed out.');
+      res.status(500).send('Request Timeout');
+    });
     next();
-});
+  });
 
 
 
