@@ -1,3 +1,4 @@
+const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 // Debug: Print environment variables
@@ -20,7 +21,6 @@ const jwt = require('jsonwebtoken');
 const User = require('./models/User');
 const connectDB = require('./config/db');
 const adminRouter = require('./routes/admin');
-const path = require('path');
 
 
 
