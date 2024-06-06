@@ -1,12 +1,11 @@
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
-// Debug: Print environment variables
 console.log('MONGODB_URI:', process.env.MONGODB_URI);
 console.log('PORT:', process.env.PORT);
 
 const express = require('express');
-const expressLayout = require('express-ejs-layouts')
+const expressLayout = require('express-ejs-layouts');
 const cors = require('cors');
 const flash = require('connect-flash');
 const bodyParser = require('body-parser');
@@ -21,8 +20,6 @@ const jwt = require('jsonwebtoken');
 const User = require('./models/User');
 const connectDB = require('./config/db');
 const adminRouter = require('./routes/admin');
-
-
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -56,18 +53,13 @@ app.use((req, res, next) => {
       res.status(500).send('Request Timeout');
     });
     next();
-  });
-
-
+});
 
 // passport initialization
 app.use(passport.initialize());
 app.use(passport.session());
 
-// check
-// app.use('/admin', adminRouter);
-
-
+// passport strategy
 passport.use(new LocalStrategy(
     async function(username, password, done) {
         try {
@@ -88,7 +80,6 @@ passport.use(new LocalStrategy(
     }
 ));
 
-
 // serialize and deserialize user
 passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -99,12 +90,9 @@ passport.deserializeUser(async (id, done) => {
         const user = await User.findById(id);
         done(null, user);
     } catch (error) {
-        done(err, null)
+        done(error, null);
     }
 });
-
-
-
 
 // template engine
 app.use(expressLayout);
@@ -114,19 +102,17 @@ app.set('view engine', 'ejs');
 app.use('/', require('./routes/main'));
 app.use('/admin', require('./routes/admin'));
 
-// Protected route example
 app.get('/admin', (req, res) => {
     res.render('admin/dashboard', { user: req.user });
 });
 
 // login - register - home (new)
-
 app.get('/', async (req, res) => {
-    res.render('index.ejs')
+    res.render('index.ejs');
 });
 
 app.get('/register', (req, res) => {
-    res.render('register.ejs')
+    res.render('register.ejs');
 });
 
 app.get('/login', (req, res) => {
@@ -149,7 +135,6 @@ app.get('/admin/dashboard', (req, res) => {
     }
 });
 
-
 app.listen(PORT, () => {
-    console.log('Server is running on port 3000');
+    console.log(`Server is running on port ${PORT}`);
 });
