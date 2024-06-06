@@ -51,9 +51,10 @@ router.post('/register', async (req, res) => {
 });
 
 // check login
-router.post('/admin/login', async (req, res) => {
+router.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
+        console.log('Login request received:', { username, password });
 
         const user = await User.findOne({ username });
         if (!user) {
