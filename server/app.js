@@ -1,4 +1,4 @@
-require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 // Debug: Print environment variables
 console.log('MONGODB_URI:', process.env.MONGODB_URI);
