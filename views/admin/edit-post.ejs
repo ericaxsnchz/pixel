@@ -5,7 +5,8 @@
                 <div class="add-post-container">
                     <input class="add" type="text" name="body" placeholder="add to the conversation" value="<%= data.body %>" required>
                     <button class="post-btn" style="margin-right: 10px;" type="submit">update   </button>
-
+        </div>
+        <div class="delete-post">
             <form action="/admin/delete-post/<%= data._id %>/<%= channel.name %>?_method=DELETE" method="POST">
                 <button class="fa-btn" type="submit"><i class="fa-solid fa-trash-can fa-2xl"></i></button>
             </form>
