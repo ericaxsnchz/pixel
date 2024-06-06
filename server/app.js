@@ -1,4 +1,8 @@
-require('dotenv').config();
+require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
+
+// Debug: Print environment variables
+console.log('MONGODB_URI:', process.env.MONGODB_URI);
+console.log('PORT:', process.env.PORT);
 
 const express = require('express');
 const expressLayout = require('express-ejs-layouts')
@@ -16,13 +20,14 @@ const jwt = require('jsonwebtoken');
 const User = require('./models/User');
 const connectDB = require('./config/db');
 const adminRouter = require('./routes/admin');
-
+const path = require('path');
 
 
 
 const app = express();
-const PORT = 8000 || process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
+app.set('views', path.join(__dirname, '../views'));
 
 // connect to db
 connectDB();
@@ -43,7 +48,7 @@ app.use(expressSession({
     }),
 }));
 app.use(flash());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.use((req, res, next) => {
     res.setTimeout(30000, () => {
@@ -146,5 +151,5 @@ app.get('/admin/dashboard', (req, res) => {
 
 
 app.listen(PORT, () => {
-    
+    console.log('Server is running on port 3000');
 });
